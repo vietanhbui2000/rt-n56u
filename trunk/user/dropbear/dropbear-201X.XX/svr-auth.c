@@ -176,8 +176,9 @@ void recv_msg_userauth_request() {
 		if (methodlen == AUTH_METHOD_PASSWORD_LEN &&
 				strncmp(methodname, AUTH_METHOD_PASSWORD,
 					AUTH_METHOD_PASSWORD_LEN) == 0) {
-			svr_auth_password(valid_user);
-			goto out;
+			if (valid_user) {
+				svr_auth_password();
+				goto out;
 			}
 		}
 	}
@@ -190,8 +191,9 @@ void recv_msg_userauth_request() {
 		if (methodlen == AUTH_METHOD_PASSWORD_LEN &&
 				strncmp(methodname, AUTH_METHOD_PASSWORD,
 					AUTH_METHOD_PASSWORD_LEN) == 0) {
-			svr_auth_pam(valid_user);
-			goto out;
+			if (valid_user) {
+				svr_auth_pam();
+				goto out;
 			}
 		}
 	}
@@ -202,7 +204,12 @@ void recv_msg_userauth_request() {
 	if (methodlen == AUTH_METHOD_PUBKEY_LEN &&
 			strncmp(methodname, AUTH_METHOD_PUBKEY,
 				AUTH_METHOD_PUBKEY_LEN) == 0) {
-		svr_auth_pubkey(valid_user);
+		if (valid_user) {
+			svr_auth_pubkey();
+		} else {
+			/* pubkey has no failure delay */
+			send_msg_userauth_failure(0, 0);
+		}
 		goto out;
 	}
 #endif
