@@ -34,7 +34,7 @@ struct nvram_pair router_defaults[] = {
 
 	/* Miscellaneous parameters */
 	{ "time_zone", DEF_TIMEZONE },
-	{ "log_float_ui", "1" },		/* WebUI syslog float panel mode */
+	{ "log_float_ui", "0" },		/* WebUI syslog float panel mode */
 	{ "log_ipaddr", "" },			/* syslog recipient IP */
 	{ "log_port", "514" },			/* syslog recipient Port */
 	{ "log_level", "0" },			/* Bitmask 0:off 1:denied 2:accepted */
@@ -172,7 +172,7 @@ struct nvram_pair router_defaults[] = {
 	{ "wl_closed", "0" },			/* Closed (hidden) network */
 	{ "wl_macmode", "disabled" },		/* "allow" only, "deny" only, or "disabled"(allow all) */
 	{ "wl_maclist", "" },			/* xx:xx:xx:xx:xx:xx ... */
-	{ "wl_wme", "0" },			/* WME mode (off|on) */
+	{ "wl_wme", "1" },			/* WME mode (off|on) */
 	{ "wl_wme_no_ack", "off" },		/* WME No-Acknowledgment mode */
 	{ "wl_auth_mode", "psk" },		/* Network authentication mode: WPAx Personal */
 	{ "wl_key", "1" },			/* Current WEP key */
@@ -193,7 +193,7 @@ struct nvram_pair router_defaults[] = {
 	{ "wl_TxPower", "100" },
 	{ "wl_TxBurst", "1" },
 	{ "wl_PktAggregate", "1" },
-	{ "wl_APSDCapable", "0" },
+	{ "wl_APSDCapable", "1" },
 	{ "wl_HT_OpMode", "0" },
 #if BOARD_HAS_5G_11AC
 	{ "wl_HT_BW", "2" },
@@ -282,13 +282,13 @@ struct nvram_pair router_defaults[] = {
 	{ "rt_HT_BW", "1" },
 	{ "rt_HT_EXTCHA", "1" },
 	{ "rt_HT_OpMode", "0" },
-	{ "rt_wme", "0" },
+	{ "rt_wme", "1" },
 	{ "rt_wme_no_ack", "off" },
 	{ "rt_IgmpSnEnable", "1" },
 	{ "rt_TxPower", "100" },
 	{ "rt_TxBurst", "1" },
 	{ "rt_PktAggregate", "1" },
-	{ "rt_APSDCapable", "0" },
+	{ "rt_APSDCapable", "1" },
 	{ "rt_auth_mode", "psk" },
 	{ "rt_crypto", "aes" },
 	{ "rt_wpa_psk", DEF_WLAN_2G_PSK },
@@ -546,7 +546,7 @@ struct nvram_pair router_defaults[] = {
 	{ "dns_forwarder_enable", "0" },
 	{ "dns_forwarder_port", "5353" },
 	{ "dns_forwarder_bind", "0.0.0.0" },
-	{ "dns_forwarder_server", "8.8.4.4:53" },
+	{ "dns_forwarder_server", "1.1.1.1:53" },
 #endif
 
 #if defined(APP_SHADOWSOCKS)
@@ -571,7 +571,7 @@ struct nvram_pair router_defaults[] = {
 
 	{ "ss-tunnel_enable", "0" },
 	{ "ss-tunnel_local_port", "5301" },
-	{ "ss-tunnel_remote", "8.8.4.4:53" },
+	{ "ss-tunnel_remote", "1.1.1.1:53" },
 	{ "ss-tunnel_mtu", "1492" },
 
 	{ "ss_watchcat", "1" },
@@ -624,7 +624,7 @@ struct nvram_pair router_defaults[] = {
 	{ "ddns2_ssl", "1" },
 	{ "asusddns_tos_agreement", "0" },
 
-	{ "preferred_lang", "CN" },
+	{ "preferred_lang", "" },
 
 	{ "modem_rule", "0" },
 	{ "modem_prio", "1" },
@@ -663,21 +663,21 @@ struct nvram_pair router_defaults[] = {
 	{ "controlrate_broadcast", "10" },
 
 	{ "di_poll_mode", "0" },
-	{ "di_timeout", "2" },
-	{ "di_time_done", "30" },
+	{ "di_timeout", "10" },
+	{ "di_time_done", "55" },
 	{ "di_time_fail", "5" },
-	{ "di_lost_delay", "1" },
+	{ "di_lost_delay", "10" },
 	{ "di_lost_action", "0" },
 	{ "di_recon_pause", "0" },
-	{ "di_addr0", "114.114.114.114" },
-	{ "di_addr1", "208.67.222.222" },
-	{ "di_addr2", "14.17.42.40" },
-	{ "di_addr3", "8.8.8.8" },
-	{ "di_addr4", "8.8.4.4" },
-	{ "di_addr5", "208.67.220.220" },
+	{ "di_addr0", "1.1.1.1" },
+	{ "di_addr1", "1.0.0.1" },
+	{ "di_addr2", "8.8.8.8" },
+	{ "di_addr3", "8.8.4.4" },
+	{ "di_addr4", "9.9.9.9" },
+	{ "di_addr5", "149.112.112.112" },
 	{ "di_port0", "53" },
 	{ "di_port1", "53" },
-	{ "di_port2", "80" },
+	{ "di_port2", "53" },
 	{ "di_port3", "53" },
 	{ "di_port4", "53" },
 	{ "di_port5", "53" },
